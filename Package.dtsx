@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{709B08D2-B013-4ECF-BD16-2D0DAF7CD756}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{AC715037-1DCE-4C70-BFC4-795E85BF79F2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,6 +32,2331 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\ComprasTotalesPorClientes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{b2e6ded5-4583-48bd-8842-87b16d38dece}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ComprasTotalesPorClientes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[NombreCompleto_t]"
+                      cachedDataType="wstr"
+                      cachedLength="101"
+                      cachedName="NombreCompleto_t"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[NombreCompleto_t]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[Anio_t]"
+                      cachedDataType="i4"
+                      cachedName="Anio_t"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[Anio_t]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1].Columns[ventaTotal_t]"
+                      cachedDataType="numeric"
+                      cachedName="ventaTotal_t"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[ventaTotal_t]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[NombreCompleto_t]"
+                      dataType="wstr"
+                      length="101"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[NombreCompleto_t]"
+                      name="NombreCompleto_t">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[NombreCompleto_t]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Anio_t]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Anio_t]"
+                      name="Anio_t">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[Anio_t]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Nombre_t]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Nombre_t]"
+                      name="Nombre_t">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Apellido]"
+                      name="Apellido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ClienteID]"
+                      name="ClienteID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[ClienteID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ventaTotal_t]"
+                      dataType="numeric"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ventaTotal_t]"
+                      name="ventaTotal_t"
+                      precision="25"
+                      scale="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[ventaTotal_t]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Clientes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Clientes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Clientes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ComprasTotalesPorClientes\Clientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[ClienteID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[ClienteID]"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[ClienteID]"
+                      name="ClienteID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Apellido]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[Apellido]"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Apellido]"
+                      name="Apellido"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[ClienteID]"
+                      dataType="i4"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].ExternalColumns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      name="Apellido" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ClienteID]"
+                      name="ClienteID" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[Apellido]"
+                      name="Apellido" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[NombreCompleto_t]"
+                      cachedDataType="wstr"
+                      cachedLength="101"
+                      cachedName="NombreCompleto_t"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[NombreCompleto_t]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[Nombre_t]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre_t"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Nombre_t]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[Anio_t]"
+                      cachedDataType="i4"
+                      cachedName="Anio_t"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Anio_t]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input].Columns[ventaTotal_t]"
+                      cachedDataType="numeric"
+                      cachedName="ventaTotal_t"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      lineageId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ventaTotal_t]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ClienteID_tr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ClienteID_tr]"
+                      name="ClienteID_tr"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ClienteID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCompleto_tr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="101"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCompleto_tr]"
+                      name="NombreCompleto_tr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[NombreCompleto_t]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Nombre_tr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Nombre_tr]"
+                      name="Nombre_tr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Nombre_t]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Apellido_tr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Apellido_tr]"
+                      name="Apellido_tr"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Apellido]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Anio_tr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Anio_tr]"
+                      name="Anio_tr"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[Anio_t]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ventaTotal_tr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ventaTotal_tr]"
+                      name="ventaTotal_tr"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1].Columns[ventaTotal_t]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input].Columns[PrecioUnitario]"
+                      cachedDataType="cy"
+                      cachedName="PrecioUnitario"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[PrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input].Columns[Cantidad]"
+                      cachedDataType="i2"
+                      cachedName="Cantidad"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[Anio_t]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[Anio_t]"
+                      name="Anio_t"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(Fecha)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[NombreCompleto_t]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="101"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[NombreCompleto_t]"
+                      name="NombreCompleto_t"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]} + " " + #{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Nombre + " " + Apellido</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[ventaTotal_t]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output].Columns[ventaTotal_t]"
+                      name="ventaTotal_t"
+                      precision="25"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Cantidad]} * #{Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[PrecioUnitario]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Cantidad * PrecioUnitario</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\DetalleVentas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="DetalleVentas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DetalleVentas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ComprasTotalesPorClientes\DetalleVentas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[Cantidad]"
+                      name="Cantidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      name="VentaID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      dataType="i4"
+                      name="VentaID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[DetalleVentaID]"
+                      dataType="i4"
+                      name="DetalleVentaID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[Cantidad]"
+                      dataType="i2"
+                      name="Cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[ProductoID]"
+                      dataType="i4"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].ExternalColumns[PrecioUnitario]"
+                      dataType="cy"
+                      name="PrecioUnitario" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
+                      dataType="i2"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[Cantidad]"
+                      name="Cantidad" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      name="VentaID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Apellido]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[VentaID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Apellido]"
+                      name="Apellido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input].Columns[Apellido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[ClienteID]"
+                      name="ClienteID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[ClienteID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Merge Join 1"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[VentaID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[PrecioUnitario]"
+                      cachedDataType="cy"
+                      cachedName="PrecioUnitario"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[PrecioUnitario]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[Cantidad]"
+                      cachedDataType="i2"
+                      cachedName="Cantidad"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[Cantidad]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[VentaID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Apellido]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[PrecioUnitario]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Cantidad]"
+                      dataType="i2"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Cantidad]"
+                      name="Cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[Cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Apellido]"
+                      name="Apellido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Apellido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[ClienteID]"
+                      name="ClienteID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[ClienteID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
+                      name="VentaID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ComprasTotalesPorClientes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ClienteID_tr]"
+                      cachedDataType="numeric"
+                      cachedName="ClienteID_tr"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClienteID_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ClienteID_tr]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NombreCompleto_tr]"
+                      cachedDataType="wstr"
+                      cachedLength="101"
+                      cachedName="NombreCompleto_tr"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[NombreCompleto_tr]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nombre_tr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre_tr"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Nombre_tr]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Apellido_tr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido_tr"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Apellido_tr]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Anio_tr]"
+                      cachedDataType="numeric"
+                      cachedName="Anio_tr"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Anio_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[Anio_tr]" />
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ventaTotal_tr]"
+                      cachedDataType="numeric"
+                      cachedName="ventaTotal_tr"
+                      cachedPrecision="25"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ventaTotal_tr]"
+                      lineageId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output].Columns[ventaTotal_tr]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ClienteID_tr]"
+                      dataType="numeric"
+                      name="ClienteID_tr"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreCompleto_tr]"
+                      dataType="wstr"
+                      length="101"
+                      name="NombreCompleto_tr" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre_tr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nombre_tr" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Apellido_tr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Apellido_tr" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Anio_tr]"
+                      dataType="numeric"
+                      name="Anio_tr"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ventaTotal_tr]"
+                      dataType="numeric"
+                      name="ventaTotal_tr"
+                      precision="25"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Inputs[Sort Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[ClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Inputs[Sort Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Inputs[Sort Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Apellido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[ClienteID]"
+                      name="ClienteID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[ClienteID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output].Columns[Apellido]"
+                      name="Apellido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output].Columns[Apellido]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input].Columns[VendedorID]"
+                      cachedDataType="i4"
+                      cachedName="VendedorID"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VendedorID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[ClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[VendedorID]"
+                      name="VendedorID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VendedorID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output].Columns[ClienteID]"
+                      name="ClienteID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[ClienteID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Sort 2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Sort 2.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Inputs[Sort Input].Columns[PrecioUnitario]"
+                      cachedDataType="cy"
+                      cachedName="PrecioUnitario"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Inputs[Sort Input].Columns[Cantidad]"
+                      cachedDataType="i2"
+                      cachedName="Cantidad"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[Cantidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Inputs[Sort Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[PrecioUnitario]"
+                      dataType="cy"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[PrecioUnitario]"
+                      name="PrecioUnitario">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[PrecioUnitario]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[Cantidad]"
+                      dataType="i2"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[Cantidad]"
+                      name="Cantidad">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[Cantidad]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output].Columns[VentaID]"
+                      name="VentaID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Sort 3"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 3"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nombre"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input].Columns[Apellido]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Apellido"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Apellido]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input].Columns[ClienteID]"
+                      cachedDataType="i4"
+                      cachedName="ClienteID"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[ClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Apellido]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Apellido]"
+                      name="Apellido">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Apellido]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[ClienteID]"
+                      name="ClienteID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[ClienteID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output].Columns[VentaID]"
+                      name="VentaID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ComprasTotalesPorClientes\Ventas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Ventas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ComprasTotalesPorClientes\Ventas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      name="VentaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[VendedorID]"
+                      name="VendedorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[ClienteID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[ClienteID]"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].Columns[ClienteID]"
+                      name="ClienteID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      dataType="i4"
+                      name="VentaID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      dataType="dbTimeStamp"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[FechaEnvio]"
+                      dataType="dbTimeStamp"
+                      name="FechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[ClienteID]"
+                      dataType="i4"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      name="VentaID" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[VendedorID]"
+                      name="VendedorID" />
+                    <outputColumn
+                      refId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ClienteID]"
+                      dataType="i4"
+                      lineageId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Error Output].Columns[ClienteID]"
+                      name="ClienteID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Aggregate Output 1]"
+              endId="Package\ComprasTotalesPorClientes\Data Conversion.Inputs[Data Conversion Input]"
+              name="Aggregate Output 1"
+              startId="Package\ComprasTotalesPorClientes\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Data Conversion Output]"
+              endId="Package\ComprasTotalesPorClientes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\ComprasTotalesPorClientes\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Derived Column Output]"
+              endId="Package\ComprasTotalesPorClientes\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\ComprasTotalesPorClientes\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Merge Join Output]"
+              endId="Package\ComprasTotalesPorClientes\Sort 3.Inputs[Sort Input]"
+              name="Merge Join Output"
+              startId="Package\ComprasTotalesPorClientes\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Merge Join Output1]"
+              endId="Package\ComprasTotalesPorClientes\Derived Column.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\ComprasTotalesPorClientes\Merge Join 1.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output]"
+              endId="Package\ComprasTotalesPorClientes\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\ComprasTotalesPorClientes\Clientes.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output1]"
+              endId="Package\ComprasTotalesPorClientes\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\ComprasTotalesPorClientes\Ventas.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output2]"
+              endId="Package\ComprasTotalesPorClientes\Sort 2.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\ComprasTotalesPorClientes\DetalleVentas.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Sort Output]"
+              endId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\ComprasTotalesPorClientes\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Sort Output1]"
+              endId="Package\ComprasTotalesPorClientes\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\ComprasTotalesPorClientes\Sort 1.Outputs[Sort Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Sort Output2]"
+              endId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\ComprasTotalesPorClientes\Sort 2.Outputs[Sort Output]" />
+            <path
+              refId="Package\ComprasTotalesPorClientes.Paths[Sort Output3]"
+              endId="Package\ComprasTotalesPorClientes\Merge Join 1.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\ComprasTotalesPorClientes\Sort 3.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate ComprasTotalesPorClientes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4c665fd5-9001-44e4-931f-371b01f9d34f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate ComprasTotalesPorClientes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{17A43B07-8F6B-4F95-B7E6-867C48979DC8}"
+          SQLTask:SqlStatementSource="USE BikeZ;&#xA;IF OBJECT_ID('dbo.ComprasTotalesPorClientes', 'U') IS NOT NULL&#xA;BEGIN&#xA;    TRUNCATE TABLE dbo.ComprasTotalesPorClientes;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate VentaPorEmpleadoPorMes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{babdc8c1-5188-4095-8a0d-6b4314d3a81f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate VentaPorEmpleadoPorMes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{17A43B07-8F6B-4F95-B7E6-867C48979DC8}"
+          SQLTask:SqlStatementSource="USE BikeZ;&#xA;IF OBJECT_ID('dbo.VentaPorEmpleadoPorMes', 'U') IS NOT NULL&#xA;BEGIN&#xA;    TRUNCATE TABLE dbo.VentaPorEmpleadoPorMes;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Truncate VentaPromedioPorAlmacen"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -45,7 +2370,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{17A43B07-8F6B-4F95-B7E6-867C48979DC8}"
-          SQLTask:SqlStatementSource="USE BikeZ; -- Reemplaza &quot;TuBaseDeDatos&quot; con el nombre real de tu base de datos&#xA;&#xA;-- Verificar si la tabla existe antes de truncarla (opcional)&#xA;IF OBJECT_ID('dbo.VentaPromedioPorAlmacen', 'U') IS NOT NULL&#xA;BEGIN&#xA;    -- Truncar la tabla&#xA;    TRUNCATE TABLE dbo.VentaPromedioPorAlmacen;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="USE BikeZ; &#xA;IF OBJECT_ID('dbo.VentaPromedioPorAlmacen', 'U') IS NOT NULL&#xA;BEGIN&#xA;    TRUNCATE TABLE dbo.VentaPromedioPorAlmacen;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3624,6 +5949,22 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\VentaPromedioPorAlmacen" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AB2CB9C4-FA99-4265-9448-AA6A4EE56B12}"
+      DTS:From="Package\Truncate VentaPorEmpleadoPorMes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\VentaPorEmpleadoPorMes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{340025E4-B3D6-4562-B5FB-618BFA4C694B}"
+      DTS:From="Package\Truncate ComprasTotalesPorClientes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\ComprasTotalesPorClientes" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -3636,7 +5977,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="206,42"
           Id="Package\VentaPromedioPorAlmacen"
@@ -3671,6 +6012,62 @@
           Size="202,42"
           Id="Package\VentaPorEmpleadoPorMes"
           TopLeft="457,133" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Truncate VentaPorEmpleadoPorMes"
+          TopLeft="141,137" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="388,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69,0"
+              Start="0,0"
+              End="61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="207,42"
+          Id="Package\ComprasTotalesPorClientes"
+          TopLeft="457,224" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\Truncate ComprasTotalesPorClientes"
+          TopLeft="135,218" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="387,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70,0"
+              Start="0,0"
+              End="62.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="62.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4473,6 +6870,429 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\VentaPorEmpleadoPorMes\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\ComprasTotalesPorClientes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="111,42"
+          Id="Package\ComprasTotalesPorClientes\Ventas"
+          TopLeft="70,165" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\ComprasTotalesPorClientes\DetalleVentas"
+          TopLeft="63,78" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\ComprasTotalesPorClientes\Clientes"
+          TopLeft="72,257" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\ComprasTotalesPorClientes\Sort"
+          TopLeft="251,252" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output]"
+          TopLeft="188,275.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63,0"
+              Start="0,0"
+              End="55.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="107,42"
+          Id="Package\ComprasTotalesPorClientes\Sort 1"
+          TopLeft="246,161" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\ComprasTotalesPorClientes\Sort 2"
+          TopLeft="250,79" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output1]"
+          TopLeft="181,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65,0"
+              Start="0,0"
+              End="57.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[OLE DB Source Output2]"
+          TopLeft="206,99.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44,0"
+              Start="0,0"
+              End="36.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\ComprasTotalesPorClientes\Merge Join"
+          TopLeft="410,251" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Sort Output]"
+          TopLeft="349,272.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,0"
+              Start="0,0"
+              End="53.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Sort Output1]"
+          TopLeft="299.5,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="175.5,48"
+              Start="0,0"
+              End="175.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="171.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="171.5,24"
+                    Point2="175.5,24"
+                    Point3="175.5,28" />
+                  <mssgle:LineSegment
+                    End="175.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="107,42"
+          Id="Package\ComprasTotalesPorClientes\Sort 3"
+          TopLeft="472,152" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Merge Join Output]"
+          TopLeft="495.333333333333,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.1666666666667,-57"
+              Start="0,0"
+              End="30.1666666666667,-49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-19.2158054711246" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-19.2158054711246"
+                    Point2="0,-23.2158054711246"
+                    Point3="4,-23.2158054711246" />
+                  <mssgle:LineSegment
+                    End="26.1666666666667,-23.2158054711246" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.1666666666667,-23.2158054711246"
+                    Point2="30.1666666666667,-23.2158054711246"
+                    Point3="30.1666666666667,-27.2158054711246" />
+                  <mssgle:LineSegment
+                    End="30.1666666666667,-49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139,42"
+          Id="Package\ComprasTotalesPorClientes\Merge Join 1"
+          TopLeft="475,69" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Sort Output2]"
+          TopLeft="357,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="118,-10"
+              Start="0,0"
+              End="110.5,-10">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55,0"
+                    Point2="59,0"
+                    Point3="59,-4" />
+                  <mssgle:LineSegment
+                    End="59,-6" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59,-6"
+                    Point2="59,-10"
+                    Point3="63,-10" />
+                  <mssgle:LineSegment
+                    End="110.5,-10" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Sort Output3]"
+          TopLeft="525.5,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,-41"
+              Start="0,0"
+              End="19,-33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-16.5"
+                    Point2="0,-20.5"
+                    Point3="4,-20.5" />
+                  <mssgle:LineSegment
+                    End="15,-20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,-20.5"
+                    Point2="19,-20.5"
+                    Point3="19,-24.5" />
+                  <mssgle:LineSegment
+                    End="19,-33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\ComprasTotalesPorClientes\Derived Column"
+          TopLeft="658,73" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Merge Join Output1]"
+          TopLeft="614,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44,0"
+              Start="0,0"
+              End="36.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="127,42"
+          Id="Package\ComprasTotalesPorClientes\Aggregate"
+          TopLeft="668,163" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Derived Column Output]"
+          TopLeft="733.25,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\ComprasTotalesPorClientes\Data Conversion"
+          TopLeft="652,253" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Aggregate Output 1]"
+          TopLeft="730.75,205">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\ComprasTotalesPorClientes\OLE DB Destination"
+          TopLeft="850,168" />
+        <EdgeLayout
+          Id="Package\ComprasTotalesPorClientes.Paths[Data Conversion Output]"
+          TopLeft="754.666666666667,253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="180.833333333333,-43"
+              Start="0,0"
+              End="180.833333333333,-35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-13.4619289340102" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-13.4619289340102"
+                    Point2="0,-17.4619289340102"
+                    Point3="4,-17.4619289340102" />
+                  <mssgle:LineSegment
+                    End="176.833333333333,-17.4619289340102" />
+                  <mssgle:CubicBezierSegment
+                    Point1="176.833333333333,-17.4619289340102"
+                    Point2="180.833333333333,-17.4619289340102"
+                    Point3="180.833333333333,-21.4619289340102" />
+                  <mssgle:LineSegment
+                    End="180.833333333333,-35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ComprasTotalesPorClientes\Ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ComprasTotalesPorClientes\Clientes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ComprasTotalesPorClientes\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
