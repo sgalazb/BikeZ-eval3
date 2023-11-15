@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{88EA515B-1E02-4C8A-B6E9-E25F5FD8BD48}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{56A36525-7048-4272-A317-F105700238A3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -8443,25 +8443,25 @@
         <NodeLayout
           Size="227,42"
           Id="Package\ProductosVendidosPorTerritorio"
-          TopLeft="457,301" />
+          TopLeft="476,300" />
         <NodeLayout
           Size="272,42"
           Id="Package\Truncate ProductosVendidosPorTerritorio"
           TopLeft="134,307" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="406,325">
+          TopLeft="406,324.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51,0"
+              EndConnector="70,0"
               Start="0,0"
-              End="43.5,0">
+              End="62.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="43.5,0" />
+                    End="62.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
