@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="11/14/2023 9:18:44 PM"
@@ -11,9 +11,2122 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionGUID="{88C3A4FF-2C6A-43B4-8974-FB8313E26F69}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{8CBE0159-92F0-4F3B-A776-BB5E55EF6ED8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{17A43B07-8F6B-4F95-B7E6-867C48979DC8}"
+      DTS:ObjectName="sgalaz-msi.BikeZ">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=sgalaz-msi;Initial Catalog=BikeZ;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\VentaPromedioPorAlmacen"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8B1E15FD-6247-4CBF-B427-AD53EEC8612E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VentaPromedioPorAlmacen"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Almacen]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1].Columns[fechaAnio]"
+                      cachedDataType="i4"
+                      cachedName="fechaAnio"
+                      lineageId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output].Columns[fechaAnio]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1].Columns[AlmacenID]"
+                      cachedDataType="i4"
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[VentaIDCount]"
+                      dataType="ui8"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[VentaIDCount]"
+                      name="VentaIDCount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[Almacen]"
+                      name="Almacen">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Almacen]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[fechaAnio]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[fechaAnio]"
+                      name="fechaAnio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output].Columns[fechaAnio]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[AlmacenID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[AlmacenID]"
+                      name="AlmacenID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Almacenes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Almacenes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Almacenes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VentaPromedioPorAlmacen\Almacenes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[AlmacenID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[AlmacenID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[AlmacenID]"
+                      name="AlmacenID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[Almacen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[Almacen]"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[Almacen]"
+                      name="Almacen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      name="TerritorioID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[AlmacenID]"
+                      dataType="i4"
+                      name="AlmacenID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].ExternalColumns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      name="Almacen" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[AlmacenID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[AlmacenID]"
+                      name="AlmacenID" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[Almacen]"
+                      name="Almacen" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      name="TerritorioID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[Almacen]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input].Columns[AlmacenID]"
+                      cachedDataType="i4"
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[AlmacenID]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input].Columns[fechaAnio]"
+                      cachedDataType="i4"
+                      cachedName="fechaAnio"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[fechaAnio]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input].Columns[VentaIDCount]"
+                      cachedDataType="ui8"
+                      cachedName="VentaIDCount"
+                      lineageId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[VentaIDCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenFinal]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenFinal]"
+                      name="AlmacenFinal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[Almacen]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenIDFinal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenIDFinal]"
+                      name="AlmacenIDFinal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[AlmacenID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[FechaFinal]"
+                      dataType="ui8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[FechaFinal]"
+                      name="FechaFinal"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[fechaAnio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[CantVentafinal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[CantVentafinal]"
+                      name="CantVentafinal"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1].Columns[VentaIDCount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Derived Column.Inputs[Derived Column Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\VentaPromedioPorAlmacen\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output].Columns[fechaAnio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output].Columns[fechaAnio]"
+                      name="fechaAnio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(Fecha)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\VentaPromedioPorAlmacen\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[TerritorioIDVentas]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioIDVentas"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioIDTerritorios"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]"
+                      name="TerritorioIDVentas"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[TerritorioIDVentas]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
+                      name="TerritorioIDTerritorios">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Merge Join 1"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[TerritorioIDAlmacenes]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioIDAlmacenes"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[AlmacenID]"
+                      cachedDataType="i4"
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDVentas]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioIDVentas"
+                      cachedSortKeyPosition="-1"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioIDTerritorios"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioID]"
+                      name="TerritorioID"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[TerritorioIDAlmacenes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
+                      name="TerritorioIDTerritorios">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Almacen]"
+                      name="Almacen">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Almacen]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
+                      name="AlmacenID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[AlmacenID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[VentaPromedioPorAlmacen]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AlmacenFinal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AlmacenFinal"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AlmacenFinal]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenFinal]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AlmacenIDFinal]"
+                      cachedDataType="r8"
+                      cachedName="AlmacenIDFinal"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AlmacenIDFinal]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[AlmacenIDFinal]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaFinal]"
+                      cachedDataType="ui8"
+                      cachedName="FechaFinal"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinal]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[FechaFinal]" />
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CantVentafinal]"
+                      cachedDataType="numeric"
+                      cachedName="CantVentafinal"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CantVentafinal]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output].Columns[CantVentafinal]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AlmacenFinal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AlmacenFinal" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AlmacenIDFinal]"
+                      dataType="r8"
+                      name="AlmacenIDFinal" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinal]"
+                      dataType="numeric"
+                      name="FechaFinal"
+                      precision="20" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CantVentafinal]"
+                      dataType="numeric"
+                      name="CantVentafinal"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[TerritorioID]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]"
+                      name="TerritorioIDVentas"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input].Columns[TerritorioID]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
+                      name="TerritorioIDTerritorios"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Sort 2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[AlmacenID]"
+                      cachedDataType="i4"
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[AlmacenID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[Almacen]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[TerritorioID]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]"
+                      name="AlmacenID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[AlmacenID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]"
+                      name="Almacen">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[Almacen]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]"
+                      name="TerritorioIDAlmacenes"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Territorios"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Territorios"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Territorios]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VentaPromedioPorAlmacen\Territorios.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      name="TerritorioID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].ExternalColumns[Territorio]"
+                      dataType="wstr"
+                      length="50"
+                      name="Territorio" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].ExternalColumns[PaisID]"
+                      dataType="wstr"
+                      length="3"
+                      name="PaisID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].ExternalColumns[Grupo]"
+                      dataType="wstr"
+                      length="50"
+                      name="Grupo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      name="TerritorioID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\Ventas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Ventas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Ventas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\VentaPromedioPorAlmacen\Ventas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  connectionManagerRefId="Package.ConnectionManagers[sgalaz-msi.BikeZ]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]"
+                      name="VentaID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]"
+                      name="TerritorioID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VentaID]"
+                      dataType="i4"
+                      name="VentaID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      dataType="dbTimeStamp"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[FechaEnvio]"
+                      dataType="dbTimeStamp"
+                      name="FechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[ClienteID]"
+                      dataType="i4"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].ExternalColumns[TerritorioID]"
+                      dataType="i4"
+                      name="TerritorioID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[VentaID]"
+                      name="VentaID" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Error Output].Columns[TerritorioID]"
+                      name="TerritorioID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Aggregate Output 1]"
+              endId="Package\VentaPromedioPorAlmacen\Data Conversion.Inputs[Data Conversion Input]"
+              name="Aggregate Output 1"
+              startId="Package\VentaPromedioPorAlmacen\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Data Conversion Output]"
+              endId="Package\VentaPromedioPorAlmacen\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\VentaPromedioPorAlmacen\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Derived Column Output]"
+              endId="Package\VentaPromedioPorAlmacen\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\VentaPromedioPorAlmacen\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output]"
+              endId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input]"
+              name="Merge Join Output"
+              startId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output1]"
+              endId="Package\VentaPromedioPorAlmacen\Derived Column.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output]"
+              endId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output1]"
+              endId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output2]"
+              endId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output]"
+              endId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output1]"
+              endId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output]" />
+            <path
+              refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output2]"
+              endId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\VentaPromedioPorAlmacen"
+          TopLeft="329,57" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\VentaPromedioPorAlmacen">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="111,42"
+          Id="Package\VentaPromedioPorAlmacen\Ventas"
+          TopLeft="63,43" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\VentaPromedioPorAlmacen\Territorios"
+          TopLeft="62,129" />
+        <NodeLayout
+          Size="129,42"
+          Id="Package\VentaPromedioPorAlmacen\Almacenes"
+          TopLeft="65,212" />
+        <NodeLayout
+          Size="98,42"
+          Id="Package\VentaPromedioPorAlmacen\Sort"
+          TopLeft="298,46" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output]"
+          TopLeft="174,65.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="124,0"
+              Start="0,0"
+              End="116.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="116.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="107,42"
+          Id="Package\VentaPromedioPorAlmacen\Sort 1"
+          TopLeft="292,124" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output1]"
+          TopLeft="189,147.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,0"
+              Start="0,0"
+              End="95.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\VentaPromedioPorAlmacen\Merge Join"
+          TopLeft="495,89" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output]"
+          TopLeft="396,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99,37.3333333333333"
+              Start="0,0"
+              End="91.5,37.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.2201834862385,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.2201834862385,0"
+                    Point2="57.2201834862385,0"
+                    Point3="57.2201834862385,4" />
+                  <mssgle:LineSegment
+                    End="57.2201834862385,33.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.2201834862385,33.3333333333333"
+                    Point2="57.2201834862385,37.3333333333333"
+                    Point3="61.2201834862385,37.3333333333333" />
+                  <mssgle:LineSegment
+                    End="91.5,37.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output1]"
+          TopLeft="399,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96,-29.3333333333333"
+              Start="0,0"
+              End="88.5,-29.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.4862385321101,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="51.4862385321101,0"
+                    Point2="55.4862385321101,0"
+                    Point3="55.4862385321101,-4" />
+                  <mssgle:LineSegment
+                    End="55.4862385321101,-25.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.4862385321101,-25.3333333333333"
+                    Point2="55.4862385321101,-29.3333333333333"
+                    Point3="59.4862385321101,-29.3333333333333" />
+                  <mssgle:LineSegment
+                    End="88.5,-29.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="107,42"
+          Id="Package\VentaPromedioPorAlmacen\Sort 2"
+          TopLeft="285,216" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output2]"
+          TopLeft="194,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91,0"
+              Start="0,0"
+              End="83.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="83.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139,42"
+          Id="Package\VentaPromedioPorAlmacen\Merge Join 1"
+          TopLeft="491,210" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output2]"
+          TopLeft="392,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99,0"
+              Start="0,0"
+              End="91.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="91.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output]"
+          TopLeft="560.25,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\VentaPromedioPorAlmacen\Derived Column"
+          TopLeft="701,206" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output1]"
+          TopLeft="630,229">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71,0"
+              Start="0,0"
+              End="63.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="63.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="127,42"
+          Id="Package\VentaPromedioPorAlmacen\Aggregate"
+          TopLeft="713,81" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Derived Column Output]"
+          TopLeft="777.25,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-83"
+              Start="0,0"
+              End="0,-75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\VentaPromedioPorAlmacen\Data Conversion"
+          TopLeft="910,81" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Aggregate Output 1]"
+          TopLeft="840,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70,0"
+              Start="0,0"
+              End="62.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="62.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\VentaPromedioPorAlmacen\OLE DB Destination"
+          TopLeft="915,210" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Data Conversion Output]"
+          TopLeft="988,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,87"
+              Start="0,0"
+              End="12.5,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.5"
+                    Point2="0,43.5"
+                    Point3="4,43.5" />
+                  <mssgle:LineSegment
+                    End="8.5,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,43.5"
+                    Point2="12.5,43.5"
+                    Point3="12.5,47.5" />
+                  <mssgle:LineSegment
+                    End="12.5,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\VentaPromedioPorAlmacen\Ventas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VentaPromedioPorAlmacen\Territorios">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VentaPromedioPorAlmacen\Almacenes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VentaPromedioPorAlmacen\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
