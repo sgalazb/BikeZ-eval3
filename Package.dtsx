@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{56A36525-7048-4272-A317-F105700238A3}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{A33FA279-6DE1-41FB-A8F6-706E6779D789}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,6 +29,17 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{A932CDFA-0568-4E7B-97E8-1A7CDF21C5E3}"
+      DTS:ObjectName="SMTPConnectionManager_ConnectionString">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">SmtpServer=smtp.gmail.com;UseWindowsAuthentication=False;EnableSsl=True;Port=587;user=seb.galaz@duocuc.cl; password=95009388SGb()</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -7225,21 +7236,22 @@
                   name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[TerritorioIDVentas]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[TerritorioID]"
                       cachedDataType="i4"
-                      cachedName="TerritorioIDVentas"
+                      cachedName="TerritorioID"
                       cachedSortKeyPosition="-1"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]" />
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[TerritorioID]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[VentaID]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[AlmacenID]"
                       cachedDataType="i4"
-                      cachedName="VentaID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]" />
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[AlmacenID]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Fecha"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]" />
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[Almacen]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -7253,7 +7265,7 @@
                       cachedDataType="i4"
                       cachedName="TerritorioIDTerritorios"
                       cachedSortKeyPosition="-1"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]" />
+                      lineageId="Package\VentaPromedioPorAlmacen\SortTerritorio.Outputs[Sort Output].Columns[TerritorioIDTerritorios]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -7265,56 +7277,44 @@
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[AlmacenID]"
                       dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]"
-                      name="TerritorioIDVentas"
-                      sortKeyPosition="-1">
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[AlmacenID]"
+                      name="AlmacenID">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[TerritorioIDVentas]}</property>
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[AlmacenID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Almacen]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Almacen]"
+                      name="Almacen">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Almacen]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
                       refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
                       dataType="i4"
                       lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
-                      name="TerritorioIDTerritorios">
+                      name="TerritorioIDTerritorios"
+                      sortKeyPosition="-1">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]"
-                      name="VentaID">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[VentaID]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]"
-                      name="Fecha">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input].Columns[Fecha]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -7355,22 +7355,21 @@
                   name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[TerritorioIDAlmacenes]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[TerritorioIDVentas]"
                       cachedDataType="i4"
-                      cachedName="TerritorioIDAlmacenes"
+                      cachedName="TerritorioIDVentas"
                       cachedSortKeyPosition="-1"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]" />
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[TerritorioIDVentas]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Almacen]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Almacen"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]" />
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[Fecha]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[AlmacenID]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[VentaID]"
                       cachedDataType="i4"
-                      cachedName="AlmacenID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]" />
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[VentaID]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -7380,26 +7379,22 @@
                   name="Merge Join Right Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDVentas]"
-                      cachedDataType="i4"
-                      cachedName="TerritorioIDVentas"
-                      cachedSortKeyPosition="-1"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDVentas]" />
-                    <inputColumn
                       refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]"
                       cachedDataType="i4"
                       cachedName="TerritorioIDTerritorios"
+                      cachedSortKeyPosition="-1"
                       lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[VentaID]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[AlmacenID]"
                       cachedDataType="i4"
-                      cachedName="VentaID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[VentaID]" />
+                      cachedName="AlmacenID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[AlmacenID]" />
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Fecha"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Fecha]" />
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Almacen]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Almacen"
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join.Outputs[Merge Join Output].Columns[Almacen]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -7407,34 +7402,19 @@
               <outputs>
                 <output
                   refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output]"
-                  isSorted="true"
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioID]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
                       dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioID]"
-                      name="TerritorioID"
-                      sortKeyPosition="-1">
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
+                      name="AlmacenID">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[TerritorioIDAlmacenes]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[TerritorioIDTerritorios]"
-                      name="TerritorioIDTerritorios">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[TerritorioIDTerritorios]}</property>
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[AlmacenID]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7448,20 +7428,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Almacen]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
-                      name="VentaID">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[VentaID]}</property>
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Almacen]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -7474,20 +7441,20 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Right Input].Columns[Fecha]}</property>
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[Fecha]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
+                      refId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
                       dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[AlmacenID]"
-                      name="AlmacenID">
+                      lineageId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output].Columns[VentaID]"
+                      name="VentaID">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[AlmacenID]}</property>
+                          name="InputColumnID">#{Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input].Columns[VentaID]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -7646,11 +7613,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\VentaPromedioPorAlmacen\Sort"
+              refId="Package\VentaPromedioPorAlmacen\SortAlmacenes"
               componentClassID="Microsoft.Sort"
               contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort"
+              name="SortAlmacenes"
               version="1">
               <properties>
                 <property
@@ -7665,205 +7632,11 @@
               </properties>
               <inputs>
                 <input
-                  refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input]"
+                  refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Inputs[Sort Input]"
                   name="Sort Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[VentaID]"
-                      cachedDataType="i4"
-                      cachedName="VentaID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[Fecha]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Fecha"
-                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input].Columns[TerritorioID]"
-                      cachedDataType="i4"
-                      cachedName="TerritorioID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">-1</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[VentaID]"
-                      name="VentaID">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[Fecha]"
-                      name="Fecha">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output].Columns[TerritorioIDVentas]"
-                      name="TerritorioIDVentas"
-                      sortKeyPosition="-1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\VentaPromedioPorAlmacen\Sort 1"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort 1"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input]"
-                  name="Sort Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input].Columns[TerritorioID]"
-                      cachedDataType="i4"
-                      cachedName="TerritorioID"
-                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">-1</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
-                      dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
-                      name="TerritorioIDTerritorios"
-                      sortKeyPosition="-1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\VentaPromedioPorAlmacen\Sort 2"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Sort 2"
-              version="1">
-              <properties>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input]"
-                  name="Sort Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[AlmacenID]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Inputs[Sort Input].Columns[AlmacenID]"
                       cachedDataType="i4"
                       cachedName="AlmacenID"
                       lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[AlmacenID]">
@@ -7879,7 +7652,7 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[Almacen]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Inputs[Sort Input].Columns[Almacen]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Almacen"
@@ -7896,7 +7669,7 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input].Columns[TerritorioID]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Inputs[Sort Input].Columns[TerritorioID]"
                       cachedDataType="i4"
                       cachedName="TerritorioID"
                       lineageId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]">
@@ -7917,14 +7690,14 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output]"
+                  refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output]"
                   isSorted="true"
                   name="Sort Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[AlmacenID]"
                       dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[AlmacenID]"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[AlmacenID]"
                       name="AlmacenID">
                       <properties>
                         <property
@@ -7935,10 +7708,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[Almacen]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[Almacen]"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[Almacen]"
                       name="Almacen">
                       <properties>
                         <property
@@ -7949,10 +7722,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]"
+                      refId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[TerritorioID]"
                       dataType="i4"
-                      lineageId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output].Columns[TerritorioIDAlmacenes]"
-                      name="TerritorioIDAlmacenes"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output].Columns[TerritorioID]"
+                      name="TerritorioID"
                       sortKeyPosition="-1">
                       <properties>
                         <property
@@ -7960,6 +7733,200 @@
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\SortTerritorio"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortTerritorio"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\SortTerritorio.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortTerritorio.Inputs[Sort Input].Columns[TerritorioID]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\SortTerritorio.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortTerritorio.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortTerritorio.Outputs[Sort Output].Columns[TerritorioIDTerritorios]"
+                      name="TerritorioIDTerritorios"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\VentaPromedioPorAlmacen\SortVentas"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SortVentas"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\VentaPromedioPorAlmacen\SortVentas.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Inputs[Sort Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Inputs[Sort Input].Columns[Fecha]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Inputs[Sort Input].Columns[TerritorioID]"
+                      cachedDataType="i4"
+                      cachedName="TerritorioID"
+                      lineageId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">-1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[VentaID]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[VentaID]"
+                      name="VentaID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[VentaID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[Fecha]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[Fecha]"
+                      name="Fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[Fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[TerritorioIDVentas]"
+                      dataType="i4"
+                      lineageId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output].Columns[TerritorioIDVentas]"
+                      name="TerritorioIDVentas"
+                      sortKeyPosition="-1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output].Columns[TerritorioID]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -8271,34 +8238,34 @@
               startId="Package\VentaPromedioPorAlmacen\Merge Join 1.Outputs[Merge Join Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output]"
-              endId="Package\VentaPromedioPorAlmacen\Sort.Inputs[Sort Input]"
+              endId="Package\VentaPromedioPorAlmacen\SortVentas.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\VentaPromedioPorAlmacen\Ventas.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output1]"
-              endId="Package\VentaPromedioPorAlmacen\Sort 1.Inputs[Sort Input]"
+              endId="Package\VentaPromedioPorAlmacen\SortTerritorio.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\VentaPromedioPorAlmacen\Territorios.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output2]"
-              endId="Package\VentaPromedioPorAlmacen\Sort 2.Inputs[Sort Input]"
+              endId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Inputs[Sort Input]"
               name="OLE DB Source Output"
               startId="Package\VentaPromedioPorAlmacen\Almacenes.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output]"
               endId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
-              startId="Package\VentaPromedioPorAlmacen\Sort.Outputs[Sort Output]" />
+              startId="Package\VentaPromedioPorAlmacen\SortAlmacenes.Outputs[Sort Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output1]"
               endId="Package\VentaPromedioPorAlmacen\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
-              startId="Package\VentaPromedioPorAlmacen\Sort 1.Outputs[Sort Output]" />
+              startId="Package\VentaPromedioPorAlmacen\SortTerritorio.Outputs[Sort Output]" />
             <path
               refId="Package\VentaPromedioPorAlmacen.Paths[Sort Output2]"
               endId="Package\VentaPromedioPorAlmacen\Merge Join 1.Inputs[Merge Join Left Input]"
               name="Sort Output"
-              startId="Package\VentaPromedioPorAlmacen\Sort 2.Outputs[Sort Output]" />
+              startId="Package\VentaPromedioPorAlmacen\SortVentas.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -8485,127 +8452,29 @@
         <NodeLayout
           Size="127,42"
           Id="Package\VentaPromedioPorAlmacen\Territorios"
-          TopLeft="62,129" />
+          TopLeft="62,183.666666666667" />
         <NodeLayout
           Size="129,42"
           Id="Package\VentaPromedioPorAlmacen\Almacenes"
-          TopLeft="65,212" />
-        <NodeLayout
-          Size="98,42"
-          Id="Package\VentaPromedioPorAlmacen\Sort"
-          TopLeft="298,46" />
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output]"
-          TopLeft="174,65.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="124,0"
-              Start="0,0"
-              End="116.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="116.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="107,42"
-          Id="Package\VentaPromedioPorAlmacen\Sort 1"
-          TopLeft="292,124" />
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output1]"
-          TopLeft="189,147.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="103,0"
-              Start="0,0"
-              End="95.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="95.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="59.6666666666667,302" />
         <NodeLayout
           Size="130,42"
-          Id="Package\VentaPromedioPorAlmacen\Merge Join"
-          TopLeft="495,89" />
+          Id="Package\VentaPromedioPorAlmacen\SortVentas"
+          TopLeft="278.666666666667,45.3333333333333" />
         <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output]"
-          TopLeft="396,67">
+          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output]"
+          TopLeft="174,65.1666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="99,37.3333333333333"
+              EndConnector="104.666666666667,0"
               Start="0,0"
-              End="91.5,37.3333333333333">
+              End="97.1666666666667,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="53.2201834862385,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="53.2201834862385,0"
-                    Point2="57.2201834862385,0"
-                    Point3="57.2201834862385,4" />
-                  <mssgle:LineSegment
-                    End="57.2201834862385,33.3333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="57.2201834862385,33.3333333333333"
-                    Point2="57.2201834862385,37.3333333333333"
-                    Point3="61.2201834862385,37.3333333333333" />
-                  <mssgle:LineSegment
-                    End="91.5,37.3333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output1]"
-          TopLeft="399,145">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="96,-29.3333333333333"
-              Start="0,0"
-              End="88.5,-29.3333333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="51.4862385321101,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="51.4862385321101,0"
-                    Point2="55.4862385321101,0"
-                    Point3="55.4862385321101,-4" />
-                  <mssgle:LineSegment
-                    End="55.4862385321101,-25.3333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="55.4862385321101,-25.3333333333333"
-                    Point2="55.4862385321101,-29.3333333333333"
-                    Point3="59.4862385321101,-29.3333333333333" />
-                  <mssgle:LineSegment
-                    End="88.5,-29.3333333333333" />
+                    End="97.1666666666667,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8615,71 +8484,49 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="107,42"
-          Id="Package\VentaPromedioPorAlmacen\Sort 2"
-          TopLeft="285,216" />
+          Size="142,42"
+          Id="Package\VentaPromedioPorAlmacen\SortTerritorio"
+          TopLeft="272,183.333333333333" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output1]"
+          TopLeft="189,204.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="83,0"
+              Start="0,0"
+              End="75.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,42"
+          Id="Package\VentaPromedioPorAlmacen\SortAlmacenes"
+          TopLeft="269,297.333333333333" />
         <EdgeLayout
           Id="Package\VentaPromedioPorAlmacen.Paths[OLE DB Source Output2]"
-          TopLeft="194,235">
+          TopLeft="188.666666666667,320.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="91,0"
+              EndConnector="80.3333333333334,0"
               Start="0,0"
-              End="83.5,0">
+              End="72.8333333333334,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="83.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="139,42"
-          Id="Package\VentaPromedioPorAlmacen\Merge Join 1"
-          TopLeft="491,210" />
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output2]"
-          TopLeft="392,234">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="99,0"
-              Start="0,0"
-              End="91.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="91.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output]"
-          TopLeft="560.25,131">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,79"
-              Start="0,0"
-              End="0,71.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,71.5" />
+                    End="72.8333333333334,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -8692,28 +8539,6 @@
           Size="154,42"
           Id="Package\VentaPromedioPorAlmacen\Derived Column"
           TopLeft="701,206" />
-        <EdgeLayout
-          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output1]"
-          TopLeft="630,229">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="71,0"
-              Start="0,0"
-              End="63.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="63.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="127,42"
           Id="Package\VentaPromedioPorAlmacen\Aggregate"
@@ -8796,6 +8621,160 @@
                     Point3="12.5,47.5" />
                   <mssgle:LineSegment
                     End="12.5,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\VentaPromedioPorAlmacen\Merge Join"
+          TopLeft="452,235.333333333333" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output]"
+          TopLeft="417,318.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.9999999999999,-56.3333333333333"
+              Start="0,0"
+              End="27.4999999999999,-56.3333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.2293577981651,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.2293577981651,0"
+                    Point2="20.2293577981651,0"
+                    Point3="20.2293577981651,-4" />
+                  <mssgle:LineSegment
+                    End="20.2293577981651,-52.3333333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.2293577981651,-52.3333333333333"
+                    Point2="20.2293577981651,-56.3333333333333"
+                    Point3="24.2293577981651,-56.3333333333333" />
+                  <mssgle:LineSegment
+                    End="27.4999999999999,-56.3333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output1]"
+          TopLeft="414,204.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38,46.3333333333334"
+              Start="0,0"
+              End="30.5,46.3333333333334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.9633027522936,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.9633027522936,0"
+                    Point2="21.9633027522936,0"
+                    Point3="21.9633027522936,4" />
+                  <mssgle:LineSegment
+                    End="21.9633027522936,42.3333333333334" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.9633027522936,42.3333333333334"
+                    Point2="21.9633027522936,46.3333333333334"
+                    Point3="25.9633027522936,46.3333333333334" />
+                  <mssgle:LineSegment
+                    End="30.5,46.3333333333334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139,42"
+          Id="Package\VentaPromedioPorAlmacen\Merge Join 1"
+          TopLeft="447.333333333333,46" />
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Sort Output2]"
+          TopLeft="408.666666666667,66.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.6666666666665,0"
+              Start="0,0"
+              End="31.1666666666665,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.1666666666665,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output]"
+          TopLeft="516.916666666667,235.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-147.333333333333"
+              Start="0,0"
+              End="0,-139.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-139.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VentaPromedioPorAlmacen.Paths[Merge Join Output1]"
+          TopLeft="538.666666666667,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="215,118"
+              Start="0,0"
+              End="215,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.0804838122954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55.0804838122954"
+                    Point2="0,59.0804838122954"
+                    Point3="4,59.0804838122954" />
+                  <mssgle:LineSegment
+                    End="211,59.0804838122954" />
+                  <mssgle:CubicBezierSegment
+                    Point1="211,59.0804838122954"
+                    Point2="215,59.0804838122954"
+                    Point3="215,63.0804838122954" />
+                  <mssgle:LineSegment
+                    End="215,110.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

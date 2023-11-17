@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">SGALAZ-MSI</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWQd9o2336kW232F44ilcdQAAAAACAAAAAAAQZgAAAAEAACAAAAAwQO2hPHzfQZPcPCLNTYLo/RJIJrQfd+ZNW2FRG+zAcwAAAAAOgAAAAAIAACAAAADip2i+EebJj0Hd5UQpkrxSpCIBN8fNu4+cZG76vyJ3C5AAAACz8q02/s3vRrRHa6MIE0w8TPg4zJh+ogn70RTSE8Ky6TBeLMmhBgmo9C+4O7hUVEGyb/eXkvD7Cj/IBpexgTbAkhtcEtWGkcGPW1SgUWSrNLeJyfNy4zwkB2TamlLZzwr2eDbBBFzyBjhjOsQOCbSObEdQ/KybVCaQgIkImElJTYOf24cAJ85AhC/mA5UHyHJAAAAA6s+ss1Cob6mZ0t7k6dbH+u0B17y8Yckz533mxARLabiSlc55u3daPhq6Yi5qMD91WKrY4gtQoeq/irHcg7Az7w==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWQd9o2336kW232F44ilcdQAAAAACAAAAAAAQZgAAAAEAACAAAACrD4I91rhXti6+ugfxWR8S/MJIjIUVe0IJSfqOPfu7BgAAAAAOgAAAAAIAACAAAAAf8irdH1ti/e/cwYVdx/w3wkBLlIx900yTrdAVx/vg7pAAAACpD2PSj3+GPKhq7EO+KU2IfZHPlHM4UEDrSgiANHFPm7wrM9I5QjqZ2MpJyzWLh1Q36CrO1R2b72qi0Ogd/XgDm+othYrAV7vvilQBGQhQYgftiQYNFOc796HEYcllnDQh0ePBcq/A/LnkghY62X+onmlK18wZ/LZwIYj1GQ2Sn2iSLxu6BMzJMxgEDmGMMWJAAAAAzsAcj9HrR5dj++DPSn2QfuyG6g6u08oepDQaN6P3V/5VUwqTX547Ki7KSDLqnnL5UgRsvT1fnx7S3UnPDPeWMQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,16 +42,30 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">35</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8CBE0159-92F0-4F3B-A776-BB5E55EF6ED8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1713A684-36BB-4AAA-83B5-4A181F2DC701}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="SMTPConnectionManager_ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{A932CDFA-0568-4E7B-97E8-1A7CDF21C5E3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">SmtpServer=smtp.gmail.com;UseWindowsAuthentication=False;EnableSsl=True;Port=587;user=seb.galaz@duocuc.cl; password=95009388SGb()</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.sgalaz-msi.BikeZ.ConnectByProxy">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">
